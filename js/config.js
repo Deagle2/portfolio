@@ -27,18 +27,21 @@ window.SITE = {
   skills: "SystemVerilog, Verilog, Vivado, cocotb, Python, C",
 
   // -- projects -----------------------------------------------------------
-  // ONLY the repos listed here are pinned at the top, in this order.
+  // ONLY the repos listed here ever show up, in this order. New repos you
+  // create will NOT appear on their own — add them here when you want them.
   //   repo: exact public repo name on your GitHub.
   //   note: optional one-liner shown instead of the GitHub description.
   // data/projects.json is just the offline fallback when the GitHub API is
   // unreachable — you never edit it by hand.
   featured: [
     { repo: "Secure-Boot-For-FPGAs", note: "Secure boot FSM controller for FPGAs." },
-    { repo: "Reverse-Engineering-Bitstreams", note: "Reverse engineering Renesas ForgeFPGA bitstreams via differential fuzzing. Work in progress." }
+    { repo: "Reverse-Engineering-Bitstreams", note: "Reverse engineering Renesas ForgeFPGA bitstreams via differential fuzzing. Work in progress." },
+    { repo: "AudioReactive", note: "A 3D audio visualizer built with Three.js as a learning project." },
+    { repo: "vcdinfo", note: "packaging exercise --debian" }
   ],
   // showOthers: true also lists every other public repo under a collapsed
-  // "other public repos" row. Set false to show ONLY the featured ones above.
-  showOthers: true,
+  // "other public repos" row. Keep false so ONLY the featured ones above show.
+  showOthers: false,
   hideRepos: ["Deagle2"],   // repos never listed (profile README etc.)
   showForks: false,         // true to include forked repos in the others list
 

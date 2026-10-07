@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Digital Design Portfolio</title>
 <meta name="description" content="RTL and digital design portfolio: FPGA, hardware security, EDA tooling.">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/style.css"><script src="js/theme.js"></script>
 <!--
   The relighting background is "Relighting Images with Three.js" by Dominik
   Fojcik (Codrops), MIT licensed, ported into src/effect/.
@@ -28,13 +28,13 @@
 </head>
 <body>
 <canvas id="bg"></canvas><div class="shade"></div>
-<header><nav><b id="brand"></b><a href="#home">home</a><a href="#about">about</a><a href="#projects">projects</a><a href="#blog">blog</a><a href="gallery.html">gallery</a><a href="#contact">contact</a></nav></header>
+<header><nav><b id="brand"></b><a href="#home">home</a><a href="#contact">contact</a><a href="#about">about</a><a href="#projects">projects</a><a href="#blog">blog</a><a href="gallery.html">gallery</a><button id="theme-btn" type="button">light</button></nav></header>
 <main>
 <section id="home"><h2>home</h2><h1 id="name"></h1><p id="tag"></p></section>
+<section id="contact"><h2>contact</h2><div id="contact-body"></div></section>
 <section id="about"><h2>about</h2><div id="about-body"></div></section>
 <section id="projects"><h2>projects</h2><div id="featured"></div><div id="more"></div><p class="dim" style="font-size:12px;margin-top:14px">Live from public GitHub repos.</p></section>
 <section id="blog"><h2>blog</h2><div id="posts"></div></section>
-<section id="contact"><h2>contact</h2><div id="contact-body"></div></section>
 </main>
 <footer>&copy; <span id="year"></span><br><span class="credit">Relighting background by <a href="https://github.com/DGFX/codrops-relightning-images" target="_blank" rel="noopener">Codrops / Dominik Fojcik</a></span></footer>
 <script src="js/config.js"></script>

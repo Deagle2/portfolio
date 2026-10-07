@@ -34,6 +34,12 @@ offline fallback and is never edited by hand.
 ## Local preview
 `python scripts/build_index.py && python -m http.server 8000`, open http://localhost:8000 (needs a server, `file://` blocks texture loading).
 
+## Theme
+The `light` / `dark` button in the nav flips the palette to paper and inverts
+the relighting canvas (`filter: invert(1)` on `#bg`). The choice persists in
+`localStorage` (`theme`) and applies before first paint, so there is no flash.
+Dark is the default.
+
 ## Credits
 
 The relighting background — flat 2D images that react to a moving point light with surface detail and self-shadowing — is
