@@ -10,7 +10,6 @@
     return e;
   }
   document.title = "Gallery | " + c.name;
-  $("#brand").textContent = c.name.split(" ")[0].toLowerCase();
   (c.gallery || []).forEach(function (g) {
     var box = el("div", { class: "frame" });
     var b = el("button", { class: "load", text: "load 3D: " + g.title });

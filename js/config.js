@@ -42,6 +42,9 @@ window.SITE = {
   // showOthers: true also lists every other public repo under a collapsed
   // "other public repos" row. Keep false so ONLY the featured ones above show.
   showOthers: false,
+  // projectsOnHome: how many featured repos show on the home page.
+  // Everything always lives on projects.html. To add one: featured entry + push.
+  projectsOnHome: 3,
   hideRepos: ["Deagle2"],   // repos never listed (profile README etc.)
   showForks: false,         // true to include forked repos in the others list
 

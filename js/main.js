@@ -8,7 +8,6 @@
   }
   function link(h, t) { return el("a", { href: h, text: t, target: "_blank", rel: "noopener" }); }
   document.title = c.name + " | Digital Design";
-  $("#brand").textContent = c.name.split(" ")[0].toLowerCase();
   $("#name").textContent = c.name;
   $("#tag").textContent = c.tagline;
   c.about.forEach(function (t) { $("#about-body").appendChild(el("p", { text: t })); });
@@ -33,8 +32,6 @@
   ct.appendChild(row("linkedin", link(c.linkedin, "linkedin.com/in/nathan-mathew")));
   if (c.email) ct.appendChild(row("mail", el("a", { href: "mailto:" + c.email, text: c.email })));
   if (c.resume) ct.appendChild(row("file", link(c.resume, "Resume (PDF)")));
-  $("#year").textContent = new Date().getFullYear() + " " + c.name;
-
   // Projects: live from GitHub API (public repos only), fallback to data/projects.json
   function repos() {
     var K = "repos-v1";
@@ -46,14 +43,17 @@
   }
   function card(r, note) {
     var h = el("h3", null, [link(r.html_url, r.name)]);
-    if (r.language) h.appendChild(el("span", { class: "tag", text: r.language }));
     return el("div", { class: "item" }, [h, el("p", { text: note || r.description || "" })]);
   }
   repos().then(function (all) {
     var pub = all.filter(function (r) { return !r.private; });
     var by = {}; pub.forEach(function (r) { by[r.name] = r; });
-    var F = $("#featured"), shown = {};
-    c.featured.forEach(function (f) { var r = by[f.repo]; if (r) { F.appendChild(card(r, f.note)); shown[r.name] = 1; } });
+    var F = $("#featured"), shown = {}, order = [];
+    c.featured.forEach(function (f) { var r = by[f.repo]; if (r) { order.push({ r: r, note: f.note }); shown[r.name] = 1; } });
+    // Home shows the first few; the full list lives on projects.html
+    var n = Math.min(order.length, c.projectsOnHome || 3);
+    order.slice(0, n).forEach(function (x) { F.appendChild(card(x.r, x.note)); });
+    if (order.length > n) F.appendChild(el("p", null, [el("a", { href: "projects.html", text: "all projects (" + order.length + ") →" })]));
     var rest = pub.filter(function (r) {
       return !shown[r.name] && !r.archived && (c.showForks || !r.fork) && c.hideRepos.indexOf(r.name) < 0;
     });

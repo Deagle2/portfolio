@@ -8,7 +8,6 @@
     return e;
   }
   document.title = "Blog | " + c.name;
-  $("#brand").textContent = c.name.split(" ")[0].toLowerCase();
   fetch("posts/index.json").then(function (r) { return r.json(); }).then(function (p) {
     var B = $("#all");
     if (!p.length) { B.appendChild(el("p", { class: "dim", text: "No posts yet." })); return; }

@@ -169,5 +169,9 @@ function buildSelector(onPick) {
 
   ui.appendChild(str)
   ui.appendChild(seg)
-  document.body.appendChild(ui)
+  // Parked in the header next to the mark; falls back to the page corner on
+  // pages without the slot.
+  var slot = document.getElementById('bgctl')
+  if (slot) slot.appendChild(ui)
+  else document.body.appendChild(ui)
 }

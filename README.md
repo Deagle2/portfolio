@@ -23,7 +23,8 @@ Everything personal is in `js/config.js` — one file, no code. Cheat sheet:
 | Name, tagline, about, skills | `name`, `tagline`, `about`, `skills` |
 | GitHub / LinkedIn / email / resume | `github`, `linkedin`, `email`, `resume` (`""` hides email/resume) |
 | Pin repos (only these show on top) | `featured: [{ repo, note }]` — exact public repo names, your order |
-| Hide the "other public repos" row | `showOthers: false` |
+| Hide the "other public repos" row | `showOthers: false` (already off: only `featured` ever shows) |
+| Home-page repo count | `projectsOnHome` (archive is always all of them on `projects.html`) |
 | Home-page post count | `postsOnHome` (archive is always all of them on `blog.html`) |
 | Add a 3D splat / video | `gallery: [{ title, src }]` — shows on `gallery.html` |
 | Default background | `bgDefault`: `"relief"`, `"elephant"` or `"mother"` |
@@ -33,12 +34,6 @@ offline fallback and is never edited by hand.
 
 ## Local preview
 `python scripts/build_index.py && python -m http.server 8000`, open http://localhost:8000 (needs a server, `file://` blocks texture loading).
-
-## Theme
-The `light` / `dark` button in the nav flips the palette to paper and inverts
-the relighting canvas (`filter: invert(1)` on `#bg`). The choice persists in
-`localStorage` (`theme`) and applies before first paint, so there is no flash.
-Dark is the default.
 
 ## Credits
 
@@ -102,9 +97,10 @@ shadow buffer view.
 ## Layout
 ```
 index.html  post.html  blog.html   (archive: every post, newest first)
+projects.html                 (archive: every featured repo, config order)
 gallery.html                    (3D splats / embeds from js/config.js -> gallery)
 css/style.css                     (prose: Source Serif 4; UI chrome: monospace)
-js/config.js  main.js  post.js  blog.js  gallery.js
+js/config.js  main.js  post.js  blog.js  gallery.js  projects.js
 src/app.js  debug.js  demos.js
 src/effect/{textures,depth-map,light,plane}.js
 src/effect/nodes/{diffuse,normal,shadow,texture-fit}.js
