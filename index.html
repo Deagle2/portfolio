@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Digital Design Portfolio</title>
+<meta name="description" content="RTL and digital design portfolio: FPGA, hardware security, EDA tooling.">
+<link rel="stylesheet" href="css/style.css">
+<!--
+  The relighting background is "Relighting Images with Three.js" by Dominik
+  Fojcik (Codrops), MIT licensed, ported into src/effect/.
+  https://github.com/DGFX/codrops-relightning-images
+
+  three.js is pinned here instead of bundled: "three/webgpu" and "three/tsl"
+  are the two subpath builds the ported effect imports, and "three" maps to the
+  same WebGPU build so the Inspector addon shares one module instance.
+-->
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.184.0/build/three.webgpu.js",
+    "three/webgpu": "https://cdn.jsdelivr.net/npm/three@0.184.0/build/three.webgpu.js",
+    "three/tsl": "https://cdn.jsdelivr.net/npm/three@0.184.0/build/three.tsl.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.184.0/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body>
+<canvas id="bg"></canvas><div class="shade"></div>
+<header><nav><b id="brand"></b><a href="#home">home</a><a href="#about">about</a><a href="#projects">projects</a><a href="#blog">blog</a><a href="#gallery">gallery</a><a href="#contact">contact</a></nav></header>
+<main>
+<section id="home"><h2>home</h2><h1 id="name"></h1><p id="tag"></p></section>
+<section id="about"><h2>about</h2><div id="about-body"></div></section>
+<section id="projects"><h2>projects</h2><div id="featured"></div><div id="more"></div><p class="dim" style="font-size:12px;margin-top:14px">Live from public GitHub repos.</p></section>
+<section id="blog"><h2>blog</h2><div id="posts"></div></section>
+<section id="gallery"><h2>gallery</h2><div id="gal"></div></section>
+<section id="contact"><h2>contact</h2><div id="contact-body"></div></section>
+</main>
+<footer>&copy; <span id="year"></span><br><span class="credit">Relighting background by <a href="https://github.com/DGFX/codrops-relightning-images" target="_blank" rel="noopener">Codrops / Dominik Fojcik</a></span></footer>
+<script src="js/config.js"></script>
+<script src="js/main.js"></script>
+<script type="module" src="src/app.js"></script>
+</body>
+</html>

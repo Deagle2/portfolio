@@ -1,0 +1,11 @@
+[
+  {
+    "slug": "how-this-blog-works",
+    "title": "How this blog works",
+    "date": "2026-10-06",
+    "summary": "Write markdown, push to GitHub, the site rebuilds itself.",
+    "tags": [
+      "meta"
+    ]
+  }
+]

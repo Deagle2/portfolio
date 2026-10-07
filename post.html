@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Post</title>
+<link rel="stylesheet" href="css/style.css">
+<!-- Same import map as index.html: see the note there. -->
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.184.0/build/three.webgpu.js",
+    "three/webgpu": "https://cdn.jsdelivr.net/npm/three@0.184.0/build/three.webgpu.js",
+    "three/tsl": "https://cdn.jsdelivr.net/npm/three@0.184.0/build/three.tsl.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.184.0/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body>
+<canvas id="bg"></canvas><div class="shade"></div>
+<header><nav><b>nat</b><a href="index.html#home">home</a><a href="index.html#projects">projects</a><a href="index.html#blog">blog</a><a href="index.html#contact">contact</a></nav></header>
+<main><article id="post" class="wide md">Loading...</article></main>
+<footer>&copy; <a href="index.html">back to site</a><br><span class="credit">Relighting background by <a href="https://github.com/DGFX/codrops-relightning-images" target="_blank" rel="noopener">Codrops / Dominik Fojcik</a></span></footer>
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/post.js"></script>
+<script type="module" src="src/app.js"></script>
+</body>
+</html>
