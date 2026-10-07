@@ -1,5 +1,23 @@
 [
   {
+    "slug": "trng",
+    "title": "TRNGS and random entropy",
+    "date": "2026-10-07",
+    "summary": "LFSR are not random",
+    "tags": [
+      "test"
+    ]
+  },
+  {
+    "slug": "Honey",
+    "title": "Honey",
+    "date": "2026-10-06",
+    "summary": "Honey Please.",
+    "tags": [
+      "test"
+    ]
+  },
+  {
     "slug": "how-this-blog-works",
     "title": "How this blog works",
     "date": "2026-10-06",
