@@ -11,9 +11,8 @@ Minimal portfolio + markdown blog. Static, no build tools, hosted on GitHub Page
 ## Add a blog post
 1. Add `posts/my-post.md` with front matter (title, date, summary; `draft: true` hides it).
 2. Commit and push. The Action regenerates `posts/index.json` and redeploys.
-3. That's it — one md file is the whole flow. The home page shows the newest
-   `postsOnHome` posts with the archive expanding inline; posts open at
-   `#/p/<slug>` (shareable) in the reader view.
+3. That's it — one md file is the whole flow. The home page shows the latest 3
+   posts (`postsOnHome` in `js/config.js`); everything lives on `blog.html`.
 
 ## Edit content
 
@@ -25,9 +24,9 @@ Everything personal is in `js/config.js` — one file, no code. Cheat sheet:
 | GitHub / LinkedIn / email / resume | `github`, `linkedin`, `email`, `resume` (`""` hides email/resume) |
 | Pin repos (only these show on top) | `featured: [{ repo, note }]` — exact public repo names, your order |
 | Hide the "other public repos" row | `showOthers: false` (already off: only `featured` ever shows) |
-| Home-page repo count | `projectsOnHome` (full list expands inline below) |
-| Home-page post count | `postsOnHome` (archive expands inline below) |
-| Add a 3D splat / video | `gallery: [{ title, src }]` — home page gallery section |
+| Home-page repo count | `projectsOnHome` (archive is always all of them on `projects.html`) |
+| Home-page post count | `postsOnHome` (archive is always all of them on `blog.html`) |
+| Add a 3D splat / video | `gallery: [{ title, src }]` — shows on `gallery.html` |
 | Default background | `bgDefault`: `"relief"`, `"elephant"` or `"mother"` |
 
 Projects load live from your public GitHub repos; `data/projects.json` is only the
@@ -97,9 +96,11 @@ shadow buffer view.
 
 ## Layout
 ```
-index.html                        (the whole site: sections + post reader view)
+index.html  post.html  blog.html   (archive: every post, newest first)
+projects.html                 (archive: every featured repo, config order)
+gallery.html                    (3D splats / embeds from js/config.js -> gallery)
 css/style.css                     (prose: Source Serif 4; UI chrome: monospace)
-js/config.js  main.js             (config = the only file you edit; main = all logic)
+js/config.js  main.js  post.js  blog.js  gallery.js  projects.js
 src/app.js  debug.js  demos.js
 src/effect/{textures,depth-map,light,plane}.js
 src/effect/nodes/{diffuse,normal,shadow,texture-fit}.js

@@ -43,23 +43,22 @@ window.SITE = {
   // "other public repos" row. Keep false so ONLY the featured ones above show.
   showOthers: false,
   // projectsOnHome: how many featured repos show on the home page.
-  // The full list expands inline below them. To add one: featured entry + push.
+  // Everything always lives on projects.html. To add one: featured entry + push.
   projectsOnHome: 3,
   hideRepos: ["Deagle2"],   // repos never listed (profile README etc.)
   showForks: false,         // true to include forked repos in the others list
 
   // -- blog ---------------------------------------------------------------
   // postsOnHome: how many of the newest posts show on the home page.
-  // The full archive expands inline below them ("all posts (N)").
+  // Everything (all posts, newest first) always lives on blog.html.
   // To publish: add posts/my-post.md with title/date/summary front matter,
   // push, done — the Action rebuilds the index. draft: true hides a post.
-  // Posts open in the reader view at #/p/<slug> (shareable links).
   postsOnHome: 3,
 
   // -- gallery ------------------------------------------------------------
-  // One entry per embed in the home page gallery section. src is anything
-  // iframeable (Luma splats, YouTube/Vimeo embeds…). Click-to-load: nothing
-  // runs until the visitor presses the button.
+  // One entry per embed on gallery.html. src is anything iframeable
+  // (Luma splats, YouTube/Vimeo embeds…). Click-to-load: nothing runs
+  // until the visitor presses the button.
   gallery: [
     { title: "Colosseum Gaussian Splat (By me :D)", src: "https://lumalabs.ai/embed/76873160-318a-4dec-91c9-7a5ee64755c3?mode=lf&background=%23050506&color=%23ffffff&showTitle=false&loadBg=true&logoPosition=bottom-left&infoPosition=bottom-right&showMenu=true" }
   ],
