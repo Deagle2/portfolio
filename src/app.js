@@ -42,15 +42,19 @@ const canvas = document.getElementById('bg')
 if (canvas) start().catch(fallback)
 
 // No WebGPU and no WebGL2: drop the canvas and let the page's flat background
-// show through, same as the previous hand-written shader did.
+// show through. The header controls stay: switching backgrounds and moving
+// the slider are harmless without a renderer.
 function fallback(error) {
   console.warn('[relight] disabled:', error)
   canvas?.style.setProperty('display', 'none')
-  document.getElementById('ui')?.remove()
 }
 
 async function start() {
   const demo = setupDemo()
+
+  // Built first so the picker + slider are always on the page, even if the
+  // renderer below fails to initialise.
+  buildSelector(selectDemo)
 
   const renderer = new WebGPURenderer({ canvas, antialias: true })
   renderer.setPixelRatio(Math.min(devicePixelRatio, MAX_PIXEL_RATIO))
@@ -113,8 +117,6 @@ async function start() {
     }
     renderer.render(scene, camera)
   })
-
-  buildSelector(selectDemo)
 }
 
 // Texture swaps are serialised so that, if someone clicks two backgrounds
