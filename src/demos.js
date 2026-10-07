@@ -26,6 +26,19 @@ import { uShadowIntensity, uShadowSoftness } from './effect/nodes/shadow.js'
 
 const STORAGE_KEY = 'bg'
 
+// Plug-and-play: the default background comes from js/config.js -> bgDefault
+// ("relief", "elephant" or "mother"), falling back to mother. config.js is a
+// classic script that always runs before this module, so window.SITE exists.
+function configuredDefault() {
+  try {
+    const key = window.SITE && window.SITE.bgDefault
+    if (key && key in DEMOS) return key
+  } catch {
+    /* fall through to the default */
+  }
+  return 'mother'
+}
+
 const DEMOS = {
   relief: {
     map: 'public/textures/relief.jpg',
@@ -80,8 +93,6 @@ const DEMOS = {
   },
 }
 
-const DEFAULT_DEMO = 'mother'
-
 export function demoKeys() {
   return Object.keys(DEMOS)
 }
@@ -93,11 +104,11 @@ export function currentDemoKey() {
   } catch {
     /* storage blocked, fall through to the default */
   }
-  return DEFAULT_DEMO
+  return configuredDefault()
 }
 
 export function applyDemo(key) {
-  const demo = DEMOS[key] ?? DEMOS[DEFAULT_DEMO]
+  const demo = DEMOS[key] ?? DEMOS[configuredDefault()]
   demo.setUniforms?.()
   try {
     localStorage.setItem(STORAGE_KEY, key)

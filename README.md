@@ -15,8 +15,21 @@ Minimal portfolio + markdown blog. Static, no build tools, hosted on GitHub Page
    posts (`postsOnHome` in `js/config.js`); everything lives on `blog.html`.
 
 ## Edit content
-Everything personal is in `js/config.js` (name, about, links, pinned projects, email, resume path).
-Projects load live from your public GitHub repos; private repos never appear.
+
+Everything personal is in `js/config.js` — one file, no code. Cheat sheet:
+
+| Want | Do |
+| --- | --- |
+| Name, tagline, about, skills | `name`, `tagline`, `about`, `skills` |
+| GitHub / LinkedIn / email / resume | `github`, `linkedin`, `email`, `resume` (`""` hides email/resume) |
+| Pin repos (only these show on top) | `featured: [{ repo, note }]` — exact public repo names, your order |
+| Hide the "other public repos" row | `showOthers: false` |
+| Home-page post count | `postsOnHome` (archive is always all of them on `blog.html`) |
+| Add a 3D splat / video | `gallery: [{ title, src }]` — shows on `gallery.html` |
+| Default background | `bgDefault`: `"relief"`, `"elephant"` or `"mother"` |
+
+Projects load live from your public GitHub repos; `data/projects.json` is only the
+offline fallback and is never edited by hand.
 
 ## Local preview
 `python scripts/build_index.py && python -m http.server 8000`, open http://localhost:8000 (needs a server, `file://` blocks texture loading).
@@ -83,8 +96,9 @@ shadow buffer view.
 ## Layout
 ```
 index.html  post.html  blog.html   (archive: every post, newest first)
-css/style.css
-js/config.js  main.js  post.js  blog.js
+gallery.html                    (3D splats / embeds from js/config.js -> gallery)
+css/style.css                     (prose: Source Serif 4; UI chrome: monospace)
+js/config.js  main.js  post.js  blog.js  gallery.js
 src/app.js  debug.js  demos.js
 src/effect/{textures,depth-map,light,plane}.js
 src/effect/nodes/{diffuse,normal,shadow,texture-fit}.js

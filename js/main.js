@@ -43,24 +43,16 @@
     var rest = pub.filter(function (r) {
       return !shown[r.name] && !r.archived && (c.showForks || !r.fork) && c.hideRepos.indexOf(r.name) < 0;
     });
-    if (rest.length) {
+    // Plug-and-play: js/config.js -> showOthers. False = featured repos only.
+    if (c.showOthers !== false && rest.length) {
       var d = el("details", null, [el("summary", { text: "other public repos (" + rest.length + ")" })]);
       rest.forEach(function (r) { d.appendChild(card(r)); });
       $("#more").appendChild(d);
     }
   }).catch(function () { $("#featured").appendChild(el("p", { class: "dim", text: "Could not load projects. See github.com/" + c.github })); });
 
-  // Gallery: click-to-load Luma embeds (keeps WebGL and bandwidth idle until asked)
-  (c.gallery || []).forEach(function (g) {
-    var box = el("div", { class: "frame" });
-    var b = el("button", { class: "load", text: "load 3D: " + g.title });
-    b.onclick = function () {
-      var f = el("iframe", { src: g.src, title: g.title, allow: "fullscreen; xr-spatial-tracking", loading: "lazy", referrerpolicy: "no-referrer" });
-      box.textContent = ""; box.appendChild(f); window.__bgPause = true;
-    };
-    box.appendChild(b); $("#gal").appendChild(box);
-    $("#gal").appendChild(el("p", { class: "dim", text: g.title + ". Hosted on Luma. Background relight pauses while it runs." }));
-  });
+  // Gallery lives on gallery.html now (js/gallery.js), so the home page stays
+  // uncrowded. The pause flag below is set there when an embed opens.
 
   // Blog index: latest few on the home page, the full archive lives on blog.html
   fetch("posts/index.json").then(function (r) { return r.json(); }).then(function (p) {

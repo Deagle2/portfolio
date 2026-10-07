@@ -38,55 +38,5 @@
   "archived": false,
   "private": false,
   "stargazers_count": 0
- },
- {
-  "name": "Bistro",
-  "description": "",
-  "language": "JavaScript",
-  "html_url": "https://github.com/Deagle2/Bistro",
-  "fork": false,
-  "archived": false,
-  "private": false,
-  "stargazers_count": 0
- },
- {
-  "name": "alfred",
-  "description": "OSINT information gathering tool that finds social media accounts based on inputs.",
-  "language": "Python",
-  "html_url": "https://github.com/Deagle2/alfred",
-  "fork": false,
-  "archived": false,
-  "private": false,
-  "stargazers_count": 0
- },
- {
-  "name": "KrunkerCSS",
-  "description": "Custom CSS themes I've made",
-  "language": "CSS",
-  "html_url": "https://github.com/Deagle2/KrunkerCSS",
-  "fork": false,
-  "archived": false,
-  "private": false,
-  "stargazers_count": 0
- },
- {
-  "name": "OTW_Bandit",
-  "description": "Over The Wire - Bandit",
-  "language": null,
-  "html_url": "https://github.com/Deagle2/OTW_Bandit",
-  "fork": false,
-  "archived": false,
-  "private": false,
-  "stargazers_count": 0
- },
- {
-  "name": "MISTasks",
-  "description": "",
-  "language": null,
-  "html_url": "https://github.com/Deagle2/MISTasks",
-  "fork": false,
-  "archived": false,
-  "private": false,
-  "stargazers_count": 0
- }
+ } 
 ]
