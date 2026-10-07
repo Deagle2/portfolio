@@ -1,3 +1,6 @@
+// Single-page site: home sections + gallery + inline archives + post reader.
+// Posts open at #/p/<slug> (shareable links); everything else is an anchor.
+// Add content in js/config.js (repos, links, gallery) or posts/*.md (blog).
 (function () {
   var c = window.SITE, $ = function (s) { return document.querySelector(s); };
   function el(t, a, k) {
@@ -32,6 +35,14 @@
   ct.appendChild(row("linkedin", link(c.linkedin, "linkedin.com/in/nathan-mathew")));
   if (c.email) ct.appendChild(row("mail", el("a", { href: "mailto:" + c.email, text: c.email })));
   if (c.resume) ct.appendChild(row("file", link(c.resume, "Resume (PDF)")));
+
+  function postLink(slug, title) { return el("a", { href: "#/p/" + encodeURIComponent(slug), text: title }); }
+  function postItem(x) {
+    var h = el("h3", null, [postLink(x.slug, x.title)]);
+    if (x.date) h.appendChild(el("span", { class: "tag", text: x.date }));
+    return el("div", { class: "item" }, [h, el("p", { text: x.summary || "" })]);
+  }
+
   // Projects: live from GitHub API (public repos only), fallback to data/projects.json
   function repos() {
     var K = "repos-v1";
@@ -45,15 +56,23 @@
     var h = el("h3", null, [link(r.html_url, r.name)]);
     return el("div", { class: "item" }, [h, el("p", { text: note || r.description || "" })]);
   }
+  var featuredOrder = [], projectsOpen = false;
+  function renderProjects() {
+    var F = $("#featured"); F.textContent = "";
+    var n = projectsOpen ? featuredOrder.length : Math.min(featuredOrder.length, c.projectsOnHome || 3);
+    featuredOrder.slice(0, n).forEach(function (x) { F.appendChild(card(x.r, x.note)); });
+    if (featuredOrder.length > (c.projectsOnHome || 3)) {
+      var a = el("a", { href: "#projects", text: projectsOpen ? "show fewer" : "all projects (" + featuredOrder.length + ") →" });
+      a.onclick = function (e) { e.preventDefault(); projectsOpen = !projectsOpen; renderProjects(); };
+      F.appendChild(el("p", null, [a]));
+    }
+  }
   repos().then(function (all) {
     var pub = all.filter(function (r) { return !r.private; });
     var by = {}; pub.forEach(function (r) { by[r.name] = r; });
-    var F = $("#featured"), shown = {}, order = [];
-    c.featured.forEach(function (f) { var r = by[f.repo]; if (r) { order.push({ r: r, note: f.note }); shown[r.name] = 1; } });
-    // Home shows the first few; the full list lives on projects.html
-    var n = Math.min(order.length, c.projectsOnHome || 3);
-    order.slice(0, n).forEach(function (x) { F.appendChild(card(x.r, x.note)); });
-    if (order.length > n) F.appendChild(el("p", null, [el("a", { href: "projects.html", text: "all projects (" + order.length + ") →" })]));
+    var shown = {};
+    c.featured.forEach(function (f) { var r = by[f.repo]; if (r) { featuredOrder.push({ r: r, note: f.note }); shown[r.name] = 1; } });
+    renderProjects();
     var rest = pub.filter(function (r) {
       return !shown[r.name] && !r.archived && (c.showForks || !r.fork) && c.hideRepos.indexOf(r.name) < 0;
     });
@@ -65,19 +84,71 @@
     }
   }).catch(function () { $("#featured").appendChild(el("p", { class: "dim", text: "Could not load projects. See github.com/" + c.github })); });
 
-  // Gallery lives on gallery.html now (js/gallery.js), so the home page stays
-  // uncrowded. The pause flag below is set there when an embed opens.
+  // Gallery: click-to-load embeds (keeps WebGL and bandwidth idle until asked)
+  (c.gallery || []).forEach(function (g) {
+    var box = el("div", { class: "frame" });
+    var b = el("button", { class: "load", text: "load 3D: " + g.title });
+    b.onclick = function () {
+      var f = el("iframe", { src: g.src, title: g.title, allow: "fullscreen; xr-spatial-tracking", loading: "lazy", referrerpolicy: "no-referrer" });
+      box.textContent = ""; box.appendChild(f); window.__bgPause = true;
+    };
+    box.appendChild(b); $("#gal").appendChild(box);
+    $("#gal").appendChild(el("p", { class: "dim", text: g.title + ". Background relight pauses while it runs." }));
+  });
 
-  // Blog index: latest few on the home page, the full archive lives on blog.html
+  // Blog: latest few inline, full archive expands in place
+  var allPosts = [], postsOpen = false;
+  function renderPosts() {
+    var B = $("#posts"); B.textContent = "";
+    if (!allPosts.length) { B.appendChild(el("p", { class: "dim", text: "No posts yet." })); return; }
+    var n = postsOpen ? allPosts.length : Math.min(allPosts.length, c.postsOnHome || 3);
+    allPosts.slice(0, n).forEach(function (x) { B.appendChild(postItem(x)); });
+    if (allPosts.length > (c.postsOnHome || 3)) {
+      var a = el("a", { href: "#blog", text: postsOpen ? "show fewer" : "all posts (" + allPosts.length + ") →" });
+      a.onclick = function (e) { e.preventDefault(); postsOpen = !postsOpen; renderPosts(); };
+      B.appendChild(el("p", null, [a]));
+    }
+  }
   fetch("posts/index.json").then(function (r) { return r.json(); }).then(function (p) {
-    var B = $("#posts");
-    if (!p.length) { B.appendChild(el("p", { class: "dim", text: "No posts yet." })); return; }
-    var n = Math.min(p.length, c.postsOnHome || 3);
-    p.slice(0, n).forEach(function (x) {
-      var h = el("h3", null, [el("a", { href: "post.html?p=" + encodeURIComponent(x.slug), text: x.title })]);
-      if (x.date) h.appendChild(el("span", { class: "tag", text: x.date }));
-      B.appendChild(el("div", { class: "item" }, [h, el("p", { text: x.summary || "" })]));
-    });
-    if (p.length > n) B.appendChild(el("p", null, [el("a", { href: "blog.html", text: "all posts (" + p.length + ") →" })]));
+    allPosts = p; renderPosts();
   }).catch(function () { $("#posts").appendChild(el("p", { class: "dim", text: "No posts yet." })); });
+
+  // Post reader view at #/p/<slug>
+  var homeView = $("#home-view"), postView = $("#post-view"), box = $("#post");
+  function showHome() {
+    postView.hidden = true; homeView.hidden = false;
+    document.title = c.name + " | Digital Design";
+    var h = location.hash;
+    if (h && h[1] !== "/" && h.length > 1) {
+      var t = document.querySelector(h);
+      if (t) t.scrollIntoView();
+    }
+  }
+  function showPost(slug) {
+    if (!/^[A-Za-z0-9_-]+$/.test(slug)) { location.hash = "#blog"; return; }
+    homeView.hidden = true; postView.hidden = false;
+    window.scrollTo(0, 0);
+    box.textContent = "Loading...";
+    fetch("posts/" + slug + ".md").then(function (r) { if (!r.ok) throw 0; return r.text(); }).then(function (t) {
+      var m = t.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n/), meta = {};
+      if (m) { m[1].split(/\r?\n/).forEach(function (l) { var i = l.indexOf(":"); if (i > 0) meta[l.slice(0, i).trim()] = l.slice(i + 1).trim().replace(/^["']|["']$/g, ""); }); t = t.slice(m[0].length); }
+      document.title = (meta.title || slug) + " | " + c.name;
+      var h = document.createElement("h1"); h.textContent = meta.title || slug;
+      var d = document.createElement("p"); d.className = "dim"; d.textContent = meta.date || "";
+      var body = document.createElement("div"); body.className = "md";
+      body.innerHTML = DOMPurify.sanitize(marked.parse(t));
+      [].forEach.call(body.querySelectorAll("a[href^='http']"), function (a) { a.target = "_blank"; a.rel = "noopener"; });
+      box.textContent = ""; box.appendChild(h); box.appendChild(d); box.appendChild(body);
+    }).catch(function () {
+      document.title = "Not found | " + c.name;
+      box.textContent = "Post not found.";
+    });
+  }
+  function route() {
+    var m = (location.hash || "").match(/^#\/p\/([A-Za-z0-9_-]+)$/);
+    if (m) showPost(m[1]);
+    else showHome();
+  }
+  addEventListener("hashchange", route);
+  route();
 })();
