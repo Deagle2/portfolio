@@ -33,7 +33,7 @@ Here's how it works:
 4. Repeat forever
 
 *Here's an example that might help it click:*
-![LFSR example](posts/assets/lfsr.png)
+![LFSR example](posts/assets/b1/lfsr.png)
 Ref: https://www.cs.princeton.edu/courses/archive/fall18/cos126/assignments/lfsr/
 
 My LFSR implements a Fibonacci LFSR (also called external-XOR), it's a simpler version compared to Galois (internal-XOR) which works differently.
@@ -64,8 +64,9 @@ LFSRs are *linear*, so anyone who sees enough outputs can work out the whole seq
 So I guess pure randomness isn't as straightforward as we think, and all this just because of a toy project.
 Which reminds me of something...
 
-![The Weeknd Quote](/posts/assets/quote.jpg) 
-Abel Tesfaye might've been onto something...
+![The Weeknd Quote](posts/assets/b1/quote.jpg)
+
+He might've been onto something...
 
 **At least when it comes to my LFSR.**
 
