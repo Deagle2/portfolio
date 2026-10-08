@@ -37,6 +37,7 @@ footer{padding:40px 0 48px;color:var(--dim);font-size:12px}
 .load{font:13px ui-monospace,Menlo,monospace;color:var(--acc);background:transparent;border:1px solid var(--acc);padding:10px 16px;cursor:pointer;border-radius:0}
 /* post page */
 .wide{max-width:720px;min-height:70vh;background:rgba(5,5,6,.72);padding:28px 24px;margin-top:40px;border:1px solid var(--line)}
+.md p{text-align:justify}
 .md h2{font-size:18px;color:var(--fg);text-transform:none;letter-spacing:0;margin:28px 0 10px}
 .md p,.md li{max-width:68ch}
 .md pre{background:#0c0d10;border:1px solid var(--line);padding:12px;overflow-x:auto;font-size:13px}

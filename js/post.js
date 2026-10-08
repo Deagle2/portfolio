@@ -10,7 +10,7 @@
     var h = document.createElement("h1"); h.textContent = meta.title || slug;
     var d = document.createElement("p"); d.className = "dim"; d.textContent = meta.date || "";
     var body = document.createElement("div"); body.className = "md";
-    body.innerHTML = DOMPurify.sanitize(marked.parse(t));
+      body.innerHTML = DOMPurify.sanitize(marked.parse(t), { ADD_ATTR: ["style"] });
     [].forEach.call(body.querySelectorAll("a[href^='http']"), function (a) { a.target = "_blank"; a.rel = "noopener"; });
     box.textContent = ""; box.appendChild(h); box.appendChild(d); box.appendChild(body);
   }).catch(function () { box.textContent = "Post not found."; });
