@@ -7,7 +7,7 @@
     return e;
   }
   function link(h, t) { return el("a", { href: h, text: t, target: "_blank", rel: "noopener" }); }
-  document.title = c.name + " | Digital Design";
+  document.title = c.name;
   $("#name").textContent = c.name;
   $("#tag").textContent = c.tagline;
   c.about.forEach(function (t) { $("#about-body").appendChild(el("p", { text: t })); });
