@@ -15,20 +15,20 @@ window.SITE = {
   about: [
     "B.Tech Electronics Engineering (VLSI Design and Technology) at MIT Manipal, 2024 to 2028.",
     "Undergraduate student researcher at MAHE.",
-    "Currently exploring Formal and DS-ASICS I love working on new and cool stuff"
   ],
   // skills: one line appended as "Tools: ...". Delete the line (or leave it
   // "") and the Tools row disappears instead of printing "undefined".
-  skills: "SystemVerilog, Verilog, Vivado, cocotb, Python, C", 
+  skills: "",
 
   // -- projects ----------------------------------------------------------- 
   featured: [
     { repo: "Secure-Boot-For-FPGAs", note: "Secure boot FSM controller for FPGAs." },
-    { repo: "Reverse-Engineering-Bitstreams", note: "Reverse engineering Renesas ForgeFPGA bitstreams via differential fuzzing. Work in progress." }
+    { repo: "Reverse-Engineering-Bitstreams", note: "Reverse engineering Renesas ForgeFPGA bitstreams via differential fuzzing. Work in progress." },
+    { repo: "vcdinfo", note: "packaging exercise --debian" }
   ],
   // showOthers: true also lists every other public repo under a collapsed
-  // "other public repos" row. Set false to show ONLY the featured ones above.
-  showOthers: true,
+  // "other public repos" row. Keep false so ONLY the featured ones above show.
+  showOthers: false,
   hideRepos: ["Deagle2"], 
   showForks: false,         
 

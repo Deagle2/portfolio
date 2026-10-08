@@ -11,7 +11,7 @@
   $("#name").textContent = c.name;
   $("#tag").textContent = c.tagline;
   c.about.forEach(function (t) { $("#about-body").appendChild(el("p", { text: t })); });
-  if (c.skills) $("#about-body").appendChild(el("p", { class: "dim", text: "Tools: " + c.skills }));
+  if (c.skills && String(c.skills).trim()) $("#about-body").appendChild(el("p", { class: "dim", text: "Tools: " + c.skills }));
   var ct = $("#contact-body");
   // Contact rows with inlined Lucide icons (ISC licensed, no extra fetch).
   var ICON = function (inner) {

@@ -11,7 +11,7 @@
  },
  {
   "name": "Reverse-Engineering-Bitstreams",
-  "description": "Reverse Engineering Renesas ForgeFPGA bitstreams using differential fuzzing [wip!!]",
+  "description": "Reverse Engineering bitstreams",
   "language": "Python",
   "html_url": "https://github.com/Deagle2/Reverse-Engineering-Bitstreams",
   "fork": false,
@@ -21,22 +21,12 @@
  },
  {
   "name": "vcdinfo",
-  "description": "packaging exercise --debian",
+  "description": "Value Change Dump files + packaging exercise",
   "language": "Python",
   "html_url": "https://github.com/Deagle2/vcdinfo",
   "fork": false,
   "archived": false,
   "private": false,
   "stargazers_count": 0
- },
- {
-  "name": "AudioReactive",
-  "description": "A 3D audio visualizer built with Threejs as a learning project",
-  "language": "JavaScript",
-  "html_url": "https://github.com/Deagle2/AudioReactive",
-  "fork": false,
-  "archived": false,
-  "private": false,
-  "stargazers_count": 0
- } 
+ }
 ]
