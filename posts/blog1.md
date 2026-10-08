@@ -33,7 +33,7 @@ Here's how it works:
 4. Repeat forever
 
 *Here's an example that might help it click:*
-![LFSR example](assets/lfsr.png)
+![LFSR example](posts/assets/lfsr.png)
 Ref: https://www.cs.princeton.edu/courses/archive/fall18/cos126/assignments/lfsr/
 
 My LFSR implements a Fibonacci LFSR (also called external-XOR), it's a simpler version compared to Galois (internal-XOR) which works differently.
