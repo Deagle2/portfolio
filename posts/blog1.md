@@ -62,7 +62,7 @@ LFSRs are *linear*, so anyone who sees enough outputs can work out the whole seq
 - **Quantum RNGs:** Is truly random, as far as we know.
 
 So I guess pure randomness isn't as straightforward as we think, and all this just because of a toy project.
-Which reminds me of something...
+Which reminds me of this:
 
 ![The Weeknd Quote](posts/assets/b1/quote.jpg)
 

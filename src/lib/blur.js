@@ -1,11 +1,7 @@
 // ---------------------------------------------------------------------------
 // Source: "Relighting Images with Three.js" by Dominik Fojcik (Codrops)
 // https://github.com/DGFX/codrops-relightning-images  (MIT)
-// Article: https://tympanus.net/codrops/?p=119000
-//
-// Used as-is from the upstream repository: a separable box blur that removes
-// the banding from a depth map while clamping each texel to within TOLERANCE
-// of its original value, so smoothing never changes the overall shape.
+// Article: https://tympanus.net/codrops/?p=119000 
 // ---------------------------------------------------------------------------
 
 const TOLERANCE = 1.5 / 255

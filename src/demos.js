@@ -2,18 +2,6 @@
 // Source: "Relighting Images with Three.js" by Dominik Fojcik (Codrops)
 // https://github.com/DGFX/codrops-relightning-images  (MIT)
 // Article: https://tympanus.net/codrops/?p=119000
-//
-// Adapted from the upstream repository. Upstream keys its demos off the URL
-// pathname and swaps whole pages; here the background is one of three images
-// chosen with the little square selector in the corner and remembered in
-// localStorage, so DEMOS is keyed by name and setupDemo() reads the saved
-// choice. applyDemo() is also called directly by the selector.
-//
-// The relief and mother presets are upstream's own demo2/demo3 values, scaled
-// down for this site: the background sits behind a dim scrim and the text
-// needs to stay readable, so it runs darker than the standalone demo. Elephant
-// has no upstream preset, so it is a middle-of-the-road guess. Every value is
-// live-editable via ?debug.
 // ---------------------------------------------------------------------------
 import { depthSmoothing } from './effect/depth-map.js'
 import { ambientLight, pointLight } from './effect/light.js'
@@ -25,10 +13,7 @@ import {
 import { uShadowIntensity, uShadowSoftness } from './effect/nodes/shadow.js'
 
 const STORAGE_KEY = 'bg'
-
-// Plug-and-play: the default background comes from js/config.js -> bgDefault
-// ("relief", "elephant" or "mother"), falling back to mother. config.js is a
-// classic script that always runs before this module, so window.SITE exists.
+ 
 function configuredDefault() {
   try {
     const key = window.SITE && window.SITE.bgDefault

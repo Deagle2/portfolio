@@ -1,6 +1,3 @@
-// Gallery page: click-to-load embeds (Luma splats, videos, anything iframeable).
-// Add or remove items in js/config.js -> gallery. Nothing here needs editing.
-// Embeds only load when clicked, so WebGL and bandwidth stay idle until asked.
 (function () {
   var c = window.SITE, $ = function (s) { return document.querySelector(s); };
   function el(t, a, k) {

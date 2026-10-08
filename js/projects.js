@@ -1,5 +1,3 @@
-// Projects archive page: every featured repo, in config order.
-// Add repos in js/config.js -> featured; nothing here needs editing.
 (function () {
   var c = window.SITE, $ = function (s) { return document.querySelector(s); };
   function el(t, a, k) {

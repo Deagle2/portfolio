@@ -2,17 +2,6 @@
 // Source: "Relighting Images with Three.js" by Dominik Fojcik (Codrops)
 // https://github.com/DGFX/codrops-relightning-images  (MIT)
 // Article: https://tympanus.net/codrops/?p=119000
-//
-// Adapted from the upstream repository. Upstream imports the Inspector eagerly
-// and always shows its panel, which is right for a demo page but not for a live
-// portfolio background. Here the panel is opt-in via ?debug, so `gui` starts
-// life as a recording stub that logs every control the effect registers. When
-// the real Inspector loads, those registrations are replayed onto it, so the
-// effect modules stay the same as upstream and cost nothing for normal visitors.
-//
-// Only the Inspector submodule is loaded, and only when ?debug is present:
-// three/addons/inspector/Inspector.js and friends resolve through the
-// "three/addons/" import map entry.
 // ---------------------------------------------------------------------------
 import { int, output, select, uniform, vec3, vec4 } from 'three/tsl'
 
