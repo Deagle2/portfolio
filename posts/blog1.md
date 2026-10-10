@@ -8,7 +8,7 @@ tags: Shrike, RTL, Fun
 Hey there!👋
 First blog, so I'll try to keep this one pretty short.
 
-I wanted to build a pretty simple project on my [Shrike-Lite](https://docs.zephyrproject.org/latest/boards/vicharak/shrike_lite/doc/index.html) dev board (pretty cool board by Vicharak, btw! RP2040 + ForgeFPGA SLG47910).
+I wanted to build a pretty simple project on my [Shrike-Lite](https://docs.zephyrproject.org/latest/boards/vicharak/shrike_lite/doc/index.html) dev board (**pretty cool board by [Vicharak](https://vicharak.in/), btw! RP2040 + ForgeFPGA SLG47910**).
 
 I thought of building a simple LED reaction timer. The idea was straightforward. You wait for an LED to light up, hit Enter as fast as you can, and find out how terrible your reaction time is. Simple enough, right? 
 
